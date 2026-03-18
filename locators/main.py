@@ -1,12 +1,12 @@
 from selenium.webdriver.common.by import By
 
 
-class MainPageLocators:
+class MainLocators:
 
     MODAL_OVERLAY = (
-        By.CLASS_NAME, 
+        By.CLASS_NAME,
         "Modal_modal_overlay__x2ZCr",
-    )    # модельное окно, отображающееся на сайте при загрузке страницы
+    )  # модельное окно, отображающееся на сайте при загрузке страницы
 
     CONSTRUCTOR_BUTTON = (
         By.XPATH,
@@ -21,7 +21,7 @@ class MainPageLocators:
     NAME_FIRST_BREAD = (
         By.XPATH,
         '//p[@class="text text_type_main-medium mb-8"]',
-    )  
+    )
 
     FIRST_SAUCE = (
         By.XPATH,
@@ -32,27 +32,24 @@ class MainPageLocators:
         By.XPATH,
         '//button[@class="Modal_modal__close_modified__3V5XS Modal_modal__close__TnseK"]',
     )  # закрывает окно с выбранной позицией
-    
+
     TEXT_FILLING_BUTTON = (
         By.XPATH,
         '//span[contains(text(), "Начинки")]',
     )  # текст кнопки "Начинки"
 
     BURGER_CONSTRUCTOR = (
-        By.CLASS_NAME, 
+        By.CLASS_NAME,
         "BurgerConstructor_basket__list__l9dp_",
     )
     # корзина с бургером
 
     FIRST_BREAD_COUNTER = (
-        By.XPATH, 
-        '//*[@id="root"]/div/main/section[1]/div[2]/ul[1]/a[1]/div[1]/p'
-    ) # счётчик первой булки из списка
+        By.XPATH,
+        '//*[@id="root"]/div/main/section[1]/div[2]/ul[1]/a[1]/div[1]/p',
+    )  # счётчик первой булки из списка
 
-
-    ORDER_ID = (
-        By.XPATH, '//*[@id="root"]/div/section/div[1]/div/h2'
-        ) # номер заказа
+    ORDER_ID = (By.XPATH, '//*[@id="root"]/div/section/div[1]/div/h2')  # номер заказа
 
     CREATE_ORDER_BUTTON = (
         By.XPATH,
@@ -61,6 +58,5 @@ class MainPageLocators:
 
     MODAL_CONTENT_BOX = (
         By.XPATH,
-        '//div[@class="Modal_modal__contentBox__sCy8X pt-30 pb-30"]'
-    ) # модельное окно при заказе
-
+        '//div[@class="Modal_modal__contentBox__sCy8X pt-30 pb-30"]',
+    )  # модельное окно при заказе
