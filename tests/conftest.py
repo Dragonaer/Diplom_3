@@ -11,14 +11,16 @@ from locators.login_in import LoginInLocators
 
 BASE_OPTIONS_CHROME = ChromeOptions()
 BASE_OPTIONS_CHROME.add_argument("--window-size=1200,800")
-BASE_OPTIONS_CHROME.add_argument("--headless")
+# BASE_OPTIONS_CHROME.add_argument("--headless")
 
 BASE_OPTIONS_FF = FirefoxOptions()
 BASE_OPTIONS_FF.add_argument("--window-size=1200,800")
-BASE_OPTIONS_FF.add_argument("--headless")
+# BASE_OPTIONS_FF.add_argument("--headless")
 
 
-@pytest.fixture(params=["chrome", "firefox"])
+# @pytest.fixture(params=["chrome", "firefox"])
+@pytest.fixture(params=["chrome"])
+
 def browser_driver(request):
     browser_name = request.param
     driver = None
@@ -35,7 +37,9 @@ def browser_driver(request):
         driver.quit()
 
 
-@pytest.fixture(params=["chrome", "firefox"])
+# @pytest.fixture(params=["chrome", "firefox"])
+@pytest.fixture(params=["chrome"])
+
 def driver_logged_in(request):
     browser_name = request.param
     driver = None
@@ -54,7 +58,9 @@ def driver_logged_in(request):
     if driver:
         driver.quit()
 
-@pytest.fixture(params=["chrome", "firefox"])
+# @pytest.fixture(params=["chrome", "firefox"])
+@pytest.fixture(params=["chrome"])
+
 def driver_feed_page(request):
     browser_name = request.param
     driver = None

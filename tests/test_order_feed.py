@@ -17,9 +17,9 @@ class TestOrderFeed:
             list_page.get_text_on_element(OrderFeedLocators.ALL_ORDERS)
         )
         order_page = BasePage(driver=driver_logged_in)
-        order_page.drag_to_cart(MainLocators.FIRST_BREAD)
+        order_page.drag_to_cart(MainLocators.FIRST_BREAD, MainLocators.BURGER_CONSTRUCTOR)
         order_page.click_on_element(MainLocators.CREATE_ORDER_BUTTON)
-        order_page.wait_for_modal_window()
+        order_page.wait_for_modal_window(MainLocators.MODAL_CONTENT_BOX)
         list_page.refresh()
         assert (
             int(list_page.get_text_on_element(OrderFeedLocators.ALL_ORDERS))
@@ -35,9 +35,9 @@ class TestOrderFeed:
             list_page.get_text_on_element(OrderFeedLocators.ORDERS_TODAY)
         )
         order_page = BasePage(driver=driver_logged_in)
-        order_page.drag_to_cart(MainLocators.FIRST_BREAD)
+        order_page.drag_to_cart(MainLocators.FIRST_BREAD, MainLocators.BURGER_CONSTRUCTOR)
         order_page.click_on_element(MainLocators.CREATE_ORDER_BUTTON)
-        order_page.wait_for_modal_window()
+        order_page.wait_for_modal_window(MainLocators.MODAL_CONTENT_BOX)
         list_page.refresh()
         assert (
             int(list_page.get_text_on_element(OrderFeedLocators.ORDERS_TODAY))
@@ -48,14 +48,14 @@ class TestOrderFeed:
     def test_id_order_in_work(self, driver_logged_in, driver_feed_page):
         list_page = BasePage(driver=driver_feed_page)
         order_page = BasePage(driver=driver_logged_in)
-        order_page.drag_to_cart(MainLocators.FIRST_BREAD)
+        order_page.drag_to_cart(MainLocators.FIRST_BREAD, MainLocators.BURGER_CONSTRUCTOR)
         order_page.click_on_element(MainLocators.CREATE_ORDER_BUTTON)
-        order_page.wait_for_modal_window()
+        order_page.wait_for_modal_window(MainLocators.MODAL_CONTENT_BOX)
         list_page.refresh()
         in_progress_orders = list_page.get_text_on_element(
             OrderFeedLocators.IN_PROGRESS_ORDERS
         )
-        order_id = order_page.get_order_id()
+        order_id = order_page.get_order_id(MainLocators.MODAL_CONTENT_BOX, "9999")
         order_id = order_id.split()[0]
         order_id = (7 - len(order_id)) * "0" + order_id
         assert order_id == in_progress_orders

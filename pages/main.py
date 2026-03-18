@@ -1,5 +1,3 @@
-import time
-
 import allure
 from locators.main import MainLocators
 from selenium.webdriver.support.ui import WebDriverWait
@@ -43,9 +41,9 @@ class BasePage:
         return element.text
 
     @allure.step("Перетащить ингредиент в корзину")
-    def drag_to_cart(self, locator):
-        source = self.driver.find_element(*locator)
-        target = self.driver.find_element(*MainLocators.BURGER_CONSTRUCTOR)
+    def drag_to_cart(self, locator1, locator2):
+        source = self.driver.find_element(*locator1)
+        target = self.driver.find_element(*locator2)
         actions = ActionChains(self.driver)
         actions.click_and_hold(source).pause(0.5)
         actions.move_to_element(target).pause(0.5)
@@ -57,14 +55,14 @@ class BasePage:
         self.driver.refresh()
 
     @allure.step("Подождать модельное окно")
-    def wait_for_modal_window(self):
-        self.wait_for_element(MainLocators.MODAL_CONTENT_BOX)
+    def wait_for_modal_window(self, locator):
+        self.wait_for_element(locator)
 
     @allure.step(
-        "Подождать прогрузки модельного окна, чтобы не отображался номер заказа 9999"
+        "Подождать прогрузки модельного окна"
     )
-    def get_order_id(self):
+    def get_order_id(self, locator, max_id):
         self.wait.until_not(
-            EC.text_to_be_present_in_element(MainLocators.MODAL_CONTENT_BOX, "9999")
+            EC.text_to_be_present_in_element(locator, max_id) 
         )
-        return self.get_text_on_element(MainLocators.MODAL_CONTENT_BOX)
+        return self.get_text_on_element(locator)
