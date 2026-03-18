@@ -17,62 +17,94 @@ BASE_OPTIONS_FF = FirefoxOptions()
 BASE_OPTIONS_FF.add_argument("--window-size=1200,800")
 # BASE_OPTIONS_FF.add_argument("--headless")
 
-
-# @pytest.fixture(params=["chrome", "firefox"])
 @pytest.fixture(params=["chrome"])
-
 def browser_driver(request):
     browser_name = request.param
-    driver = None
-
     if browser_name == "chrome":
         driver = webdriver.Chrome(options=BASE_OPTIONS_CHROME)
-        driver.get(main_site)
     elif browser_name == "firefox":
         driver = webdriver.Firefox(options=BASE_OPTIONS_FF)
-        driver.get(main_site)
-
+    driver.get(main_site)
     yield driver
-    if driver:
-        driver.quit()
+    driver.quit()
 
-
-# @pytest.fixture(params=["chrome", "firefox"])
-@pytest.fixture(params=["chrome"])
-
-def driver_logged_in(request):
-    browser_name = request.param
-    driver = None
-
-    if browser_name == "chrome":
-        driver = webdriver.Chrome(options=BASE_OPTIONS_CHROME)
-    elif browser_name == "firefox":
-        driver = webdriver.Firefox(options=BASE_OPTIONS_FF)
+@pytest.fixture
+def driver_logged_in(browser_driver):
+    driver = browser_driver
     driver.get(login_page)
     driver.find_element(*LoginInLocators.EMAIL).send_keys(Credentials.email)
     driver.find_element(*LoginInLocators.PASSWORD).send_keys(Credentials.password)
     driver.find_element(*LoginInLocators.SIGN_IN_BUTTON).click()
-    
     yield driver
 
-    if driver:
-        driver.quit()
-
-# @pytest.fixture(params=["chrome", "firefox"])
-@pytest.fixture(params=["chrome"])
-
-def driver_feed_page(request):
-    browser_name = request.param
-    driver = None
-
-    if browser_name == "chrome":
-        driver = webdriver.Chrome(options=BASE_OPTIONS_CHROME)
-    elif browser_name == "firefox":
-        driver = webdriver.Firefox(options=BASE_OPTIONS_FF)
-    
+@pytest.fixture
+def driver_feed_page(browser_driver):
+    driver = browser_driver
     driver.get(order_feed_page)
-
     yield driver
 
-    if driver:
-        driver.quit()
+
+
+
+
+
+
+
+# # @pytest.fixture(params=["chrome", "firefox"])
+# @pytest.fixture(params=["chrome"])
+
+# def browser_driver(request):
+#     browser_name = request.param
+#     driver = None
+
+#     if browser_name == "chrome":
+#         driver = webdriver.Chrome(options=BASE_OPTIONS_CHROME)
+#         driver.get(main_site)
+#     elif browser_name == "firefox":
+#         driver = webdriver.Firefox(options=BASE_OPTIONS_FF)
+#         driver.get(main_site)
+
+#     yield driver
+#     if driver:
+#         driver.quit()
+
+
+# # @pytest.fixture(params=["chrome", "firefox"])
+# @pytest.fixture(params=["chrome"])
+
+# def driver_logged_in(request):
+#     browser_name = request.param
+#     driver = None
+
+#     if browser_name == "chrome":
+#         driver = webdriver.Chrome(options=BASE_OPTIONS_CHROME)
+#     elif browser_name == "firefox":
+#         driver = webdriver.Firefox(options=BASE_OPTIONS_FF)
+#     driver.get(login_page)
+#     driver.find_element(*LoginInLocators.EMAIL).send_keys(Credentials.email)
+#     driver.find_element(*LoginInLocators.PASSWORD).send_keys(Credentials.password)
+#     driver.find_element(*LoginInLocators.SIGN_IN_BUTTON).click()
+    
+#     yield driver
+
+#     if driver:
+#         driver.quit()
+
+# # @pytest.fixture(params=["chrome", "firefox"])
+# @pytest.fixture(params=["chrome"])
+
+# def driver_feed_page(request):
+#     browser_name = request.param
+#     driver = None
+
+#     if browser_name == "chrome":
+#         driver = webdriver.Chrome(options=BASE_OPTIONS_CHROME)
+#     elif browser_name == "firefox":
+#         driver = webdriver.Firefox(options=BASE_OPTIONS_FF)
+    
+#     driver.get(order_feed_page)
+
+#     yield driver
+
+#     if driver:
+#         driver.quit()

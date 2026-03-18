@@ -66,3 +66,11 @@ class BasePage:
             EC.text_to_be_present_in_element(locator, max_id) 
         )
         return self.get_text_on_element(locator)
+
+    @allure.step("Попапа про ингредиент")
+    def wait_for_ingredient_popup(self, locator):
+        return self.wait_for_element(locator)
+
+class MainPage(BasePage):
+    def __init__(self, driver):
+        super().__init__(driver)

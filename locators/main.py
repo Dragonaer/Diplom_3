@@ -18,6 +18,7 @@ class MainLocators:
         '//img[@alt="Флюоресцентная булка R2-D3"]',
     )  # первая булка из списка
 
+
     NAME_FIRST_BREAD = (
         By.XPATH,
         '//p[@class="text text_type_main-medium mb-8"]',
@@ -60,3 +61,5 @@ class MainLocators:
         By.XPATH,
         '//div[@class="Modal_modal__contentBox__sCy8X pt-30 pb-30"]',
     )  # модельное окно при заказе
+
+    POPUP_FIRST_BREAD = (By.XPATH, "//img[@src='https://code.s3.yandex.net/react/code/bun-01.png']")
