@@ -1,9 +1,9 @@
 import allure
-from pages.main import *
+from pages.base_page import *
 from locators.main import *
 from locators.login_in import *
 from locators.order_feed import OrderFeedLocators
-from pages.main import BasePage
+from pages.base_page import BasePage
 from curl import *
 
 
