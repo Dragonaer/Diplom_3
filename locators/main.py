@@ -26,5 +26,7 @@ class MainLocators:
     # кнопка "Оформить заказ"
     MODAL_CONTENT_BOX = (By.XPATH,'//div[@class="Modal_modal__contentBox__sCy8X pt-30 pb-30"]',) 
      # модельное окно при заказе
+    CLOSE_THE_WINDOW_WITH_ORDER_ID = (By.XPATH, '//button[@class="Modal_modal__close_modified__3V5XS Modal_modal__close__TnseK"]')
+    # закрыть всплывающее окно с номером заказа
     POPUP_FIRST_BREAD = (By.XPATH, "//img[@src='https://code.s3.yandex.net/react/code/bun-01.png']") 
     # всплывающее окно

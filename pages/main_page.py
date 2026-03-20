@@ -42,4 +42,24 @@ class MainPage(BasePage):
     @allure.step("Получение количества ингредиентов у позиции")
     def counter_ingredient(self):
         return self.find_element(MainLocators.FIRST_BREAD_COUNTER).text
+    
+    @allure.step("Начажать кнопку Сделать заказ")
+    def enter_create_button(self):
+        self.click_on_element(MainLocators.CREATE_ORDER_BUTTON)
         
+    @allure.step("Подождать модельное окно с номером заказа")
+    def wait_for_modal_window_with_order_ID(self):
+        self.wait_for_element(MainLocators.MODAL_CONTENT_BOX)
+
+    @allure.step("Получить номер заказа")
+    def get_order_id(self):
+        number = self.wait_for_element(MainLocators.ORDER_ID)
+        if number == "9999":
+            self.loading_modal_window(MainLocators.ORDER_ID, "9999")
+            number = self.wait_for_element(MainLocators.ORDER_ID).text
+        return number
+    
+    @allure.step("Закрыть модельное окно с номером заказа")
+    def close_the_window_with_order_id(self):
+        self.loading_modal_window(MainLocators.MODAL_CONTENT_BOX, '9999')
+        self.click_on_element(MainLocators.CLOSE_THE_WINDOW_WITH_ORDER_ID)

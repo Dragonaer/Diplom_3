@@ -4,8 +4,6 @@ from pages.main_page import MainPage
 from pages.order_feed import OrderFeed
 
 from locators.main import MainLocators
-from locators.login_in import LoginInLocators
-from locators.order_feed import OrderFeedLocators
 
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC 

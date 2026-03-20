@@ -35,33 +35,12 @@ class BasePage:
         element.clear()
         element.send_keys(keys)
 
-    @allure.step("Найти элемент")    
-    def find_element(self, locator, timeout=10):
-        return WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located(locator))
-
     @allure.step("Получить текст элемента")
     def get_text_on_element(self, locator, timeout=TIMEOUT):
         element = self.wait_for_element(locator, timeout)
         return element.text
 
-    @allure.step("Обновление страницы")
-    def refresh(self):
-        self.driver.refresh()
-
-    @allure.step("Подождать модельное окно")
-    def wait_for_modal_window(self, locator):
-        self.wait_for_element(locator)
-
-    @allure.step("Прогрузка модельного окна")
-    def loading_modal_window(self, locator, max_id):
-        self.wait.until_not(EC.text_to_be_present_in_element(locator, max_id))
-
-
-    @allure.step("Попап про ингредиент")
-    def wait_for_ingredient_popup(self, locator):
-        return self.wait_for_element(locator)
-
-    @allure.step("Перетащить элемент")
+    @allure.step("Перетащить ингредиент в корзину")
     def drag_to_cart(self, locator1, locator2):
         source = self.driver.find_element(*locator1)
         target = self.driver.find_element(*locator2)
@@ -71,4 +50,27 @@ class BasePage:
         actions.release().pause(0.5)
         actions.perform()
 
-    
+    @allure.step("Обновление страницы")
+    def refresh(self):
+        self.driver.refresh()
+
+    @allure.step("Подождать модельное окно")
+    def wait_for_modal_window(self, locator):
+        self.wait_for_element(locator)
+
+    @allure.step(
+        "Подождать прогрузки модельного окна"
+    )
+    def get_order_id(self, locator, max_id):
+        self.wait.until_not(
+            EC.text_to_be_present_in_element(locator, max_id) 
+        )
+        return self.get_text_on_element(locator)
+
+    @allure.step("Попапа про ингредиент")
+    def wait_for_ingredient_popup(self, locator):
+        return self.wait_for_element(locator)
+
+class MainPage(BasePage):
+    def __init__(self, driver):
+        super().__init__(driver)
