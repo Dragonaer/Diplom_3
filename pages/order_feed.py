@@ -20,6 +20,10 @@ class OrderFeed(BasePage):
     @allure.step("Получить показанние счетчика за сегодня")
     def get_indications_counter_today(self):
         return int(self.wait_for_element(OrderFeedLocators.ORDERS_TODAY).text)
+    
+    @allure.step("Посмотреть номер заказа в разделе 'В работе'")
+    def id_order_in_progress(self, order_ID):
+        return self.wait_text_in_elements(OrderFeedLocators.IN_PROGRESS_ORDERS, order_ID)
 
     @allure.step("Кликнуть на Конструктор")
     def click_on_constructor(self):

@@ -72,3 +72,6 @@ class BasePage:
         actions.perform()
 
     
+    @allure.step("Подождать появление текста в нужном элементе")
+    def wait_text_in_elements(self, locator, text, timeout=TIMEOUT):
+        return WebDriverWait(self.driver, timeout).until(EC.text_to_be_present_in_element(locator, text))
