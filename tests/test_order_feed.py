@@ -2,7 +2,6 @@ import allure
 from pages.base_page import *
 from locators.main import *
 from locators.login_in import *
-from locators.order_feed import OrderFeedLocators
 from pages.main_page import MainPage
 from pages.order_feed import OrderFeed
 

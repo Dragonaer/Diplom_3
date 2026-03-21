@@ -29,24 +29,10 @@ class BasePage:
         element = self.wait_for_element(locator, timeout)
         element.click()
 
-    @allure.step("Ввести текст элемента")
-    def send_keys_to_input(self, locator, keys, timeout=TIMEOUT):
-        element = self.wait_for_element(locator, timeout)
-        element.clear()
-        element.send_keys(keys)
-
     @allure.step("Найти элемент")    
     def find_element(self, locator, timeout=10):
         return WebDriverWait(self.driver, timeout).until(EC.presence_of_element_located(locator))
 
-    @allure.step("Получить текст элемента")
-    def get_text_on_element(self, locator, timeout=TIMEOUT):
-        element = self.wait_for_element(locator, timeout)
-        return element.text
-
-    @allure.step("Обновление страницы")
-    def refresh(self):
-        self.driver.refresh()
 
     @allure.step("Подождать модельное окно")
     def wait_for_modal_window(self, locator):

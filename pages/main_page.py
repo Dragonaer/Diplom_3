@@ -1,9 +1,7 @@
 import allure
 from locators.main import MainLocators
 from locators.login_in import LoginInLocators
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.action_chains import ActionChains
+
 from pages.base_page import BasePage
 
 
