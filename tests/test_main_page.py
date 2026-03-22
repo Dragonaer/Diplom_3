@@ -36,9 +36,7 @@ class TestMainPage:
         page = MainPage(driver=browser_driver)
         page.click_on_first_bread()
         page.close_the_window_ingregient()
-        assert WebDriverWait(page.driver, 10).until(
-            EC.invisibility_of_element_located(MainLocators.MODAL_CONTENT_BOX)
-        )
+        assert page.is_modal_contex_box_closed()
 
     @allure.title("Увеличение счетчика ингридиента при добавлении в заказ")
     def test_ingredient_counter(self, browser_driver):

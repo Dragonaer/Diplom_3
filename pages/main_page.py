@@ -4,8 +4,8 @@ from locators.login_in import LoginInLocators
 
 from pages.base_page import BasePage
 
-
-TIMEOUT = 10
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC 
 
 
 class MainPage(BasePage):
@@ -65,3 +65,9 @@ class MainPage(BasePage):
             number_text = element.text
 
         return number_text
+    
+    @allure.step("Модельное окно отсутствует на экране")
+    def is_modal_contex_box_closed(self):
+        return WebDriverWait(self.driver, 10).until(
+            EC.invisibility_of_element_located(MainLocators.MODAL_CONTENT_BOX)
+        )

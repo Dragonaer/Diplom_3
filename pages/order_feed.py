@@ -4,8 +4,6 @@ from locators.order_feed import OrderFeedLocators
 from pages.base_page import BasePage
 
 
-TIMEOUT = 10
-
 
 class OrderFeed(BasePage):
     
