@@ -20,7 +20,7 @@ class MainLocators:
     # корзина с бургером
     FIRST_BREAD_COUNTER = (By.XPATH,'//p[contains(@class,"counter_counter__num")]',)  
     # счётчик первой булки из списка
-    ORDER_ID = (By.XPATH, '//*[@id="root"]/div/section/div[1]/div/h2')  
+    ORDER_ID = (By.XPATH,"//p[contains(@class,'OrderFeed_number')]")  
     # номер заказа
     CREATE_ORDER_BUTTON = (By.XPATH,'//button[@class="button_button__33qZ0 button_button_type_primary__1O7Bx button_button_size_large__G21Vg"]',)  
     # кнопка "Оформить заказ"

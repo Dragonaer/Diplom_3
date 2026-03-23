@@ -4,8 +4,6 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 
-
-
 from curl import *
 from data import *
 from locators.login_in import LoginInLocators
@@ -20,7 +18,6 @@ BASE_OPTIONS_FF.add_argument("--window-size=1200,800")
 BASE_OPTIONS_FF.add_argument("--headless")
 
 
-
 @pytest.fixture(params=["chrome","firefox"])
 def browser_driver(request):
     browser_name = request.param
@@ -31,7 +28,6 @@ def browser_driver(request):
     driver.get(main_site)
     yield driver
     driver.quit()
-
 
 
 @pytest.fixture
